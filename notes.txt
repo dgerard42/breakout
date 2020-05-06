@@ -1,0 +1,16 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                   .--.                       #
+#    notes.txt                                   __/ o  ".                     #
+#                                               `  ),    "-.                   #
+#    By: doot <github.com/dgerard42>               |;;,      "-._              #
+#                                                  ';;;,,    ",_ "=-._         #
+#    Created: 2020/05/06 14:26:05 by doot            ':;;;;,,..-``"-._`"-.     #
+#    Updated: 2020/05/06 16:34:48 by doot              _/_/`           `'"`    #
+#                                                                              #
+# **************************************************************************** #
+
+- try to see if you can move the 'run' logic to the gameManager layer, by using
+    the start thread keyword in that layer
+- I'm pretty sure it's nt possible though, because u can only create threads
+    for active objects, and start creates a thread
