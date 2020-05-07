@@ -2,12 +2,12 @@ import objectdraw.*;
 
 public class Ball extends ActiveObject{
 
-    private GameSizes gameSizes;
-    private Bricks bricks;
+    private GameData gameData;
+    private BrickManager brickManager;
 
-    public Ball(GameSizes gameSizes, Bricks bricks){
+    public Ball(GameData gameData, BrickManager brickManager){
 
-        this.gameSizes = gameSizes;
-        this.bricks = bricks;
+        this.gameData = gameData;
+        this.brickManager = brickManager;
     }
 }

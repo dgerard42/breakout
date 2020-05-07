@@ -1,18 +1,20 @@
 import objectdraw.*;
+import java.lang.System;
 
 public class Paddle extends ActiveObject {
 
-    private GameSizes gameSizes;
+    private GameData gameData;
     private FilledRect paddle;
 
-    public Paddle(GameSizes gameSizes){
+    public Paddle(GameData gameData){
 
-        this.gameSizes = gameSizes;
-        paddle = new FilledRect(30, 30);
+        this.gameData = gameData;
+        paddle = new FilledRect(30, 30, 30, 30, gameData.getCanvas());
+        //obv put real math here eventually ^^^
         start();
     }
 
-    public movePaddle(int mouseX){
+    public void movePaddle(int mouseX){
 
         double newX = 20; //put real math here eventually!!
         double newY = 20;

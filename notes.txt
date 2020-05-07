@@ -6,7 +6,7 @@
 #    By: doot <github.com/dgerard42>               |;;,      "-._              #
 #                                                  ';;;,,    ",_ "=-._         #
 #    Created: 2020/05/06 14:26:05 by doot            ':;;;;,,..-``"-._`"-.     #
-#    Updated: 2020/05/06 16:34:48 by doot              _/_/`           `'"`    #
+#    Updated: 2020/05/06 20:05:25 by doot              _/_/`           `'"`    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,3 +14,11 @@
     the start thread keyword in that layer
 - I'm pretty sure it's nt possible though, because u can only create threads
     for active objects, and start creates a thread
+- if there is a collision of the ball to a brick, call the remove brick function
+    with a parameter of the location of the ball, and the direction of the ball
+- given the location of the ball and the direciton of the ball, determine which
+    brick u hit
+- actually, u have to pass every object to check and see if it overlaps. so
+    just do a reverse traversal through the bricks (closer to ball ones first)
+    and see if any of them are on the canvass. REMOVE the ones that are collided
+
