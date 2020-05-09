@@ -1,4 +1,5 @@
 import objectdraw.*;
+import java.awt.Color;
 
 public class Brick extends FilledRect {
 //u may not need a seperate brick object tbh. might be nice to keep track of hitboxes, but keep in mind
@@ -7,12 +8,14 @@ public class Brick extends FilledRect {
     private GameData gameData;
     private int brickID; //brick ID might not be needed, keep an eye on that
     private int hitboxX;
-    private int color; //idk if color should be an int but I'll find out later
+//    private Color color; //idk if color should be an int but I'll find out later
 
-    public Brick(GameData gamedata, int brickID, int brickX, int brickY){
+    public Brick(GameData gamedata, int brickID, int brickX, int brickY, Color color){
         super(brickX, brickY, 40, 10, gamedata.getCanvas());
         this.brickID = brickID;
         this.gameData = gamedata;
+  //      this.color = color;
+        setColor(color);
     }
 
     public boolean withinBox(){
