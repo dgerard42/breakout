@@ -1,13 +1,16 @@
 import objectdraw.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+//import java.lang.System;
 
 public class Ball extends ActiveObject{
 
+    private static final int GENERATE_POSITIVE_RATE = -1;
     private GameData gameData;
     private BrickManager brickManager;
     private Paddle paddle;
     private FilledOval ball;
+    private Score score;
 
     public Ball(GameData gameData, BrickManager brickManager, Paddle paddle){
 
@@ -19,9 +22,12 @@ public class Ball extends ActiveObject{
                 gameData.getBallRadius(),
                 gameData.getBallRadius(),
                 gameData.getCanvas());
+        score = new Score(gameData);
         start();
     }
 
+    //generate a random X movement rate within a range, either negative or positive, depending on whether or not the
+    //previous X movement rate was positive or negative
     public int generateNewXDelta(int current){
 
         if (current > 0)
@@ -30,22 +36,42 @@ public class Ball extends ActiveObject{
             return (-(ThreadLocalRandom.current().nextInt(gameData.getBallXDeltaMin(), gameData.getBallXDeltaMax())));
     }
 
+    //iterate through all current bricks. If there is a collision, tell the brick manager to remove the brick, and tell
+    //the parent ball function if there was a collision or not
     public boolean checkBrickCollision(){
 
         ArrayList<Brick> brickList = brickManager.getBricks();
         for (int currentBrick = 0; currentBrick < brickManager.getActiveBricks(); currentBrick++){
-            if (ball.overlaps(brickList.get(currentBrick)))
-                System.out.println("YE");
+            if (ball.overlaps(brickList.get(currentBrick))) {
+                brickManager.removeBrick(currentBrick);
+                //return true;
+                break;
+            }
         }
         return false;
     }
 
+    public boolean loseLife(){
+
+        if (score.getLives() >= 1) {
+            score.loseLife();
+            ball.moveTo((gameData.getCanvasWidth() / 2),(gameData.getCanvasWidth() / 2));
+            return true;
+        }
+        else {
+            ball.removeFromCanvas();
+            return false;
+        }
+    }
+
+    //move the ball at generated and assigned rates. check for collisions with if statements and helper functions, and
+    //reverse x or y rates of movement if necessary
     public void run(){
 
-        int deltaX = generateNewXDelta(-1);
+        int deltaX = generateNewXDelta(GENERATE_POSITIVE_RATE);
         int deltaY = gameData.getBallYDelta();
-        while (true){
-
+        boolean gameActive = true;
+        while (gameActive == true) {
             if (ball.getX() <= 0 || ball.getX() >= (gameData.getCanvasWidth() - gameData.getBallRadius()))
                 deltaX = -deltaX;
             else if (ball.getY() <= 0)
@@ -55,6 +81,10 @@ public class Ball extends ActiveObject{
                 deltaX = generateNewXDelta(deltaX);
             } else if (checkBrickCollision() == true)
                 deltaY = -deltaY;
+            else if (ball.getY() >= (gameData.getCanvasHeight() - gameData.getBallRadius())) {
+                gameActive = loseLife();
+                deltaX = generateNewXDelta(GENERATE_POSITIVE_RATE);
+            }
             ball.move(deltaX, deltaY);
             pause(gameData.getBallSpeed());
         }

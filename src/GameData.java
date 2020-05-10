@@ -1,5 +1,6 @@
 import objectdraw.DrawingCanvas;
-import java.awt.Color;
+
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameData {
@@ -36,7 +37,11 @@ public class GameData {
     private static final int BALL_Y_DELTA = (int)BreakoutProgram.VELOCITY_Y;
     private static final int BALL_X_DELTA_MIN = (int)BreakoutProgram.VELOCITY_X_MIN;
     private static final int BALL_X_DELTA_MAX = (int)BreakoutProgram.VELOCITY_X_MAX;
-    private static final int BALL_SPEED = 20;
+    private static final int BALL_SPEED = BreakoutProgram.DELAY;
+
+    //MISC
+    private static final int LIVES_AT_START = BreakoutProgram.NTURNS;
+    private static final String FONT = BreakoutProgram.SCREEN_FONT;
 
     public GameData(){
 
@@ -131,5 +136,13 @@ public class GameData {
 
     public static int getBallSpeed() {
         return BALL_SPEED;
+    }
+
+    public static int getLivesAtStart() {
+        return LIVES_AT_START;
+    }
+
+    public static String getFont() {
+        return FONT;
     }
 }

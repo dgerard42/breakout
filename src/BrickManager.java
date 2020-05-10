@@ -36,8 +36,12 @@ public class BrickManager {
         }
     }
 
-    public void removeBrick(){
+    public void removeBrick(int targetBrickIndex){
 
+        Brick targetBrick = bricks.get(targetBrickIndex);
+        bricks.remove(targetBrickIndex);
+        targetBrick.removeFromCanvas();
+        activeBricks--;
     }
 
     public ArrayList<Brick> getBricks() {
