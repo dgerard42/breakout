@@ -7,7 +7,7 @@ public class Brick extends FilledRect {
     //esp if you don't need hitboxes
     private GameData gameData;
     private int brickID; //brick ID might not be needed, keep an eye on that
-    private int hitboxX;
+//    private int hitboxX;
 //    private Color color; //idk if color should be an int but I'll find out later
 
     public Brick(GameData gamedata, int brickID, int brickX, int brickY, Color color){

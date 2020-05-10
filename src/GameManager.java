@@ -15,8 +15,8 @@ public class GameManager extends WindowController {
 
         gameData.setCanvas(canvas);
         brickManager = new BrickManager(gameData);
-        ball = new Ball(gameData, brickManager);
         paddle = new Paddle(gameData);
+        ball = new Ball(gameData, brickManager, paddle);
     }
 
     public static void main(String args[]){

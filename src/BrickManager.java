@@ -39,4 +39,12 @@ public class BrickManager {
     public void removeBrick(){
 
     }
+
+    public ArrayList<Brick> getBricks() {
+        return bricks;
+    }
+
+    public int getActiveBricks() {
+        return activeBricks;
+    }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class GameData {
 
+    //COLORS
     private ArrayList<Color> colors;
     private static final Color COLOR_0 = new Color(88, 39, 7);
     private static final Color COLOR_1 = new Color(151, 45, 7);
@@ -11,10 +12,12 @@ public class GameData {
     private static final Color COLOR_3 = new Color(255, 178, 15);
     private static final Color COLOR_4 = new Color(255, 229, 72);
 
+    //CANVAS
     private DrawingCanvas canvas;
-
     private static final int CANVAS_WIDTH = (int)BreakoutProgram.CANVAS_WIDTH;
     private static final int CANVAS_HEIGHT = (int)BreakoutProgram.CANVAS_HEIGHT;
+
+    //BRICKS
     private static final int NUM_BRICKS = BreakoutProgram.NBRICK_COLUMNS * BreakoutProgram.NBRICK_ROWS;
     private static final int BRICKS_X = BreakoutProgram.NBRICK_COLUMNS;
     private static final int BRICKS_Y = BreakoutProgram.NBRICK_ROWS;
@@ -22,6 +25,18 @@ public class GameData {
     private static final int BRICK_SEP = (int)BreakoutProgram.BRICK_SEP;
     private static final int BRICK_Y_OFFSET = (int)BreakoutProgram.BRICK_Y_OFFSET;
     private static final int BRICK_HEIGHT = (int)BreakoutProgram.BRICK_HEIGHT;
+
+    //PADDLE
+    private static final int PADDLE_WIDTH = (int)BreakoutProgram.PADDLE_WIDTH;
+    private static final int PADDLE_HEIGHT = (int)BreakoutProgram.PADDLE_HEIGHT;
+    private static final int PADDLE_Y_OFFSET =(int)BreakoutProgram.PADDLE_Y_OFFSET;
+
+    //BALL
+    private static final int BALL_RADIUS = (int)BreakoutProgram.BALL_RADIUS;
+    private static final int BALL_Y_DELTA = (int)BreakoutProgram.VELOCITY_Y;
+    private static final int BALL_X_DELTA_MIN = (int)BreakoutProgram.VELOCITY_X_MIN;
+    private static final int BALL_X_DELTA_MAX = (int)BreakoutProgram.VELOCITY_X_MAX;
+    private static final int BALL_SPEED = 20;
 
     public GameData(){
 
@@ -84,5 +99,37 @@ public class GameData {
 
     public static int getBrickHeight() {
         return BRICK_HEIGHT;
+    }
+
+    public static int getPaddleWidth() {
+        return PADDLE_WIDTH;
+    }
+
+    public static int getPaddleHeight() {
+        return PADDLE_HEIGHT;
+    }
+
+    public static int getPaddleYOffset() {
+        return PADDLE_Y_OFFSET;
+    }
+
+    public static int getBallRadius() {
+        return BALL_RADIUS;
+    }
+
+    public static int getBallYDelta() {
+        return BALL_Y_DELTA;
+    }
+
+    public static int getBallXDeltaMin() {
+        return BALL_X_DELTA_MIN;
+    }
+
+    public static int getBallXDeltaMax() {
+        return BALL_X_DELTA_MAX;
+    }
+
+    public static int getBallSpeed() {
+        return BALL_SPEED;
     }
 }
