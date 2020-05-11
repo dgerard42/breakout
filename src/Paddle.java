@@ -1,5 +1,4 @@
 import objectdraw.*;
-//import java.lang.System;
 
 public class Paddle extends ActiveObject {
 

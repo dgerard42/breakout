@@ -1,7 +1,6 @@
 import objectdraw.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
-//import java.lang.System;
 
 public class Ball extends ActiveObject{
 
@@ -85,11 +84,11 @@ public class Ball extends ActiveObject{
             else if (ball.getY() >= (gameData.getCanvasHeight() - gameData.getBallRadius())) {
                 gameActive = loseLife();
                 deltaX = generateNewXDelta(-deltaX); //generate random inverse direction X movement rate
-            } else if (score.getScore() == 100)
+            } else if (score.getScore() == (gameData.getBricksX() * gameData.getBricksY()))
                 gameActive = score.endGameVictory();
             ball.move(deltaX, deltaY);
             pause(gameData.getBallSpeed());
-        } if (score.getScore() != 100){
+        } if (score.getScore() != (gameData.getBricksX() * gameData.getBricksY())){
             ball.removeFromCanvas();
             (paddle.getPaddle()).removeFromCanvas();
         }

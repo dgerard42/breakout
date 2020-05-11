@@ -1,5 +1,4 @@
 import objectdraw.*;
-import java.lang.System;
 import java.awt.Font;
 
 public class Score {
