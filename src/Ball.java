@@ -44,8 +44,8 @@ public class Ball extends ActiveObject{
         for (int currentBrick = 0; currentBrick < brickManager.getActiveBricks(); currentBrick++){
             if (ball.overlaps(brickList.get(currentBrick))) {
                 brickManager.removeBrick(currentBrick);
-                //return true;
-                break;
+                score.scorePoint();
+                return true;
             }
         }
         return false;
@@ -53,12 +53,13 @@ public class Ball extends ActiveObject{
 
     public boolean loseLife(){
 
-        if (score.getLives() >= 1) {
+        if (score.getLives() > 1) {
             score.loseLife();
             ball.moveTo((gameData.getCanvasWidth() / 2),(gameData.getCanvasWidth() / 2));
             return true;
         }
         else {
+            score.loseLife();
             ball.removeFromCanvas();
             return false;
         }
@@ -83,10 +84,14 @@ public class Ball extends ActiveObject{
                 deltaY = -deltaY;
             else if (ball.getY() >= (gameData.getCanvasHeight() - gameData.getBallRadius())) {
                 gameActive = loseLife();
-                deltaX = generateNewXDelta(GENERATE_POSITIVE_RATE);
-            }
+                deltaX = generateNewXDelta(-deltaX); //generate random inverse direction X movement rate
+            } else if (score.getScore() == 100)
+                gameActive = score.endGameVictory();
             ball.move(deltaX, deltaY);
             pause(gameData.getBallSpeed());
+        } if (score.getScore() != 100){
+            ball.removeFromCanvas();
+            (paddle.getPaddle()).removeFromCanvas();
         }
     }
 }

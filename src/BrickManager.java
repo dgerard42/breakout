@@ -33,6 +33,7 @@ public class BrickManager {
             }
             brickY += gameData.getBrickHeight() + gameData.getBrickSep();
             colorIndex = (rowY % 2 == 0) ? colorIndex : colorIndex + 1; //increment to the next color if you have created 2 rows
+            
         }
     }
 
