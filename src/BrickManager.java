@@ -22,16 +22,16 @@ public class BrickManager {
         int colorIndex = 0;
         for (int rowY = 0; rowY < gameData.getBricksY(); rowY++){
             int brickX = (gameData.getCanvasWidth() - ((gameData.getBrickWidth() * gameData.getBricksX())
-                    + (gameData.getBrickSep() * gameData.getBricksX()))) / 2 ;
-            Color currentColor = (gameData.getColors()).get(colorIndex);
+                    + (gameData.getBrickSep() * gameData.getBricksX()))) / 2 ; //calculate first row brick X position
+            Color currentColor = (gameData.getColors()).get(colorIndex); //get current color
             for (int columnX = 0; columnX < gameData.getBricksX(); columnX++){
                 bricks.add(new Brick(gameData, brickID, brickX, brickY, currentColor));
                 brickID++;
-                brickX += gameData.getBrickSep() + gameData.getBrickWidth();
+                brickX += gameData.getBrickSep() + gameData.getBrickWidth(); //calculate next brick X position
             }
-            brickY += gameData.getBrickHeight() + gameData.getBrickSep();
+            brickY += gameData.getBrickHeight() + gameData.getBrickSep(); // calculate new brick Y position
             colorIndex = (rowY % 2 == 0) ? colorIndex : colorIndex + 1; //increment to the next color if you have created 2 rows
-            colorIndex = (rowY % 9 == 0) ? 0 : colorIndex;
+            colorIndex = (rowY % 9 == 0) ? 0 : colorIndex; //wrap around colors if there are more than 10 rows
         }
     }
 

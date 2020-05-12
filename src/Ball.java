@@ -54,13 +54,13 @@ public class Ball extends ActiveObject{
 
         if (score.getLives() > 1) {
             score.loseLife();
-            ball.moveTo((gameData.getCanvasWidth() / 2),(gameData.getCanvasWidth() / 2));
-            return true;
+            ball.moveTo((gameData.getCanvasWidth() / 2),(gameData.getCanvasWidth() / 2)); //move to middle
+            return true; //true means continue the game
         }
         else {
             score.loseLife();
             ball.removeFromCanvas();
-            return false;
+            return false; //false means player has died
         }
     }
 
@@ -73,22 +73,22 @@ public class Ball extends ActiveObject{
         boolean gameActive = true;
         while (gameActive == true) {
             if (ball.getX() <= 0 || ball.getX() >= (gameData.getCanvasWidth() - gameData.getBallRadius()))
-                deltaX = -deltaX;
+                deltaX = -deltaX; //if ball hits sides, reverse X movement
             else if (ball.getY() <= 0)
-                deltaY = -deltaY;
+                deltaY = -deltaY; //if ball hits ceiling, reverse Y movement
             else if (ball.overlaps(paddle.getPaddle())) {
                 deltaY = -deltaY;
                 deltaX = generateNewXDelta(deltaX);
             } else if (checkBrickCollision() == true)
                 deltaY = -deltaY;
             else if (ball.getY() >= (gameData.getCanvasHeight() - gameData.getBallRadius())) {
-                gameActive = loseLife();
+                gameActive = loseLife(); //if the ball is past the bottom, lose a life
                 deltaX = generateNewXDelta(-deltaX); //generate random inverse direction X movement rate
             } else if (score.getScore() == (gameData.getBricksX() * gameData.getBricksY()))
-                gameActive = score.endGameVictory();
-            ball.move(deltaX, deltaY);
+                gameActive = score.endGameVictory(); //display victory message if the player wins
+            ball.move(deltaX, deltaY); //move the ball every turn
             pause(gameData.getBallSpeed());
-        } if (score.getScore() != (gameData.getBricksX() * gameData.getBricksY())){
+        } if (score.getScore() != (gameData.getBricksX() * gameData.getBricksY())){ //remove ball && paddle if player loses
             ball.removeFromCanvas();
             (paddle.getPaddle()).removeFromCanvas();
         }
